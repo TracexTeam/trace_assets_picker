@@ -70,6 +70,7 @@ class AssetPickerViewer<Asset, Path> extends StatefulWidget {
     final PageRouteBuilder<List<AssetEntity>> pageRoute =
         PageRouteBuilder<List<AssetEntity>>(
       pageBuilder: (_, __, ___) => viewer,
+      transitionDuration: const Duration(milliseconds: 200),
       transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
         return FadeTransition(opacity: animation, child: child);
       },

@@ -1586,9 +1586,12 @@ class DefaultAssetPickerBuilderDelegate
       children: <Widget>[
         Positioned.fill(
           child: RepaintBoundary(
-            child: AssetEntityGridItemBuilder(
-              image: imageProvider,
-              failedItemBuilder: failedItemBuilder,
+            child: Hero(
+              tag: asset.id,
+              child: AssetEntityGridItemBuilder(
+                image: imageProvider,
+                failedItemBuilder: failedItemBuilder,
+              ),
             ),
           ),
         ),

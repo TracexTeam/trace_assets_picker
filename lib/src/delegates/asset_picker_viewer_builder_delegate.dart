@@ -988,23 +988,27 @@ class DefaultAssetPickerViewerBuilderDelegate
                 : SystemUiOverlayStyle.dark),
         child: Material(
           color: themeData.scaffoldBackgroundColor,
-          child: Stack(
-            children: <Widget>[
-              Positioned.fill(child: _pageViewBuilder(context)),
-              if (isWeChatMoment && hasVideo) ...<Widget>[
-                momentVideoBackButton(context),
-                PositionedDirectional(
-                  end: 16,
-                  bottom: context.bottomPadding + 16,
-                  child: confirmButton(context),
-                ),
-              ] else ...<Widget>[
-                appBar(context),
-                if (selectedAssets != null ||
-                    (isWeChatMoment && hasVideo && isAppleOS(context)))
-                  bottomDetailBuilder(context),
+          child: ExtendedImageSlidePage(
+            slideType: SlideType.onlyImage,
+            slideAxis: SlideAxis.vertical,
+            child: Stack(
+              children: <Widget>[
+                Positioned.fill(child: _pageViewBuilder(context)),
+                if (isWeChatMoment && hasVideo) ...<Widget>[
+                  momentVideoBackButton(context),
+                  PositionedDirectional(
+                    end: 16,
+                    bottom: context.bottomPadding + 16,
+                    child: confirmButton(context),
+                  ),
+                ] else ...<Widget>[
+                  appBar(context),
+                  if (selectedAssets != null ||
+                      (isWeChatMoment && hasVideo && isAppleOS(context)))
+                    bottomDetailBuilder(context),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
