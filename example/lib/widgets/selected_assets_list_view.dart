@@ -3,9 +3,9 @@
 // in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart'
+import 'package:trace_assets_picker/wechat_assets_picker.dart'
     show AssetEntity, AssetPicker, AssetPickerViewer;
-import 'package:wechat_assets_picker_demo/constants/extensions.dart';
+import 'package:trace_assets_picker_demo/constants/extensions.dart';
 
 import '../main.dart' show themeColor;
 import 'asset_widget_builder.dart';
