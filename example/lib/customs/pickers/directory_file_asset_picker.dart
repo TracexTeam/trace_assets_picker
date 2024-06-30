@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart' show basename;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:trace_assets_picker/wechat_assets_picker.dart';
+import 'package:trace_assets_picker/trace_assets_picker.dart';
 
 import '../../constants/extensions.dart';
 

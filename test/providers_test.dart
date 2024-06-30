@@ -1,10 +1,20 @@
+/*
+ * @Author: otis
+ * @Date: 2024-06-29 18:52:13
+ * @LastEditors: otis
+ * @LastEditTime: 2024-06-30 11:16:52
+ * @FilePath: /trace_assets_picker/test/providers_test.dart
+ * @Description: 
+ * 
+ * Copyright (c) 2024 by @trace/guoming, All Rights Reserved. 
+ */
 // Copyright 2019 The FlutterCandies author. All rights reserved.
 // Use of this source code is governed by an Apache license that can be found
 // in the LICENSE file.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+import 'package:trace_assets_picker/trace_assets_picker.dart';
 
 import 'test_utils.dart';
 

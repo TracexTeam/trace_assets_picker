@@ -2,7 +2,7 @@
 // Use of this source code is governed by an Apache license that can be found
 // in the LICENSE file.
 
-library wechat_assets_picker;
+library trace_assets_picker;
 
 export 'package:photo_manager/photo_manager.dart';
 export 'package:photo_manager_image_provider/photo_manager_image_provider.dart';

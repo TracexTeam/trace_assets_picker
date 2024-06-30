@@ -6,7 +6,7 @@ import 'package:photo_manager/photo_manager.dart';
 
 import '../models/path_wrapper.dart';
 
-/// @{template wechat_assets_picker.delegates.SortPathDelegate}
+/// @{template trace_assets_picker.delegates.SortPathDelegate}
 /// Delegate to sort asset path entities.
 /// 用于资源路径排序的实现
 /// @{endtemplate}

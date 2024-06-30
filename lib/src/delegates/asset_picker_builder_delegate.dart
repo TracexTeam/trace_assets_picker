@@ -94,7 +94,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
 
-  /// {@macro wechat_assets_picker.AssetSelectPredicate}
+  /// {@macro trace_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
   /// The [ScrollController] for the preview grid.
@@ -115,10 +115,10 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// 使用 [Null] 即使用 [isAppleOS] 进行判断。
   final bool? shouldRevertGrid;
 
-  /// {@macro wechat_assets_picker.LimitedPermissionOverlayPredicate}
+  /// {@macro trace_assets_picker.LimitedPermissionOverlayPredicate}
   final LimitedPermissionOverlayPredicate? limitedPermissionOverlayPredicate;
 
-  /// {@macro wechat_assets_picker.PathNameBuilder}
+  /// {@macro trace_assets_picker.PathNameBuilder}
   final PathNameBuilder<AssetPathEntity>? pathNameBuilder;
 
   /// [ThemeData] for the picker.
@@ -1531,12 +1531,13 @@ class DefaultAssetPickerBuilderDelegate
         return MaterialButton(
           minWidth: shouldAllowConfirm ? 48 : 20,
           height: appBarItemHeight,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           color: theme.colorScheme.secondary,
           disabledColor: theme.splashColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3),
+            borderRadius: BorderRadius.circular(999),
           ),
+          elevation: 0,
           onPressed: shouldAllowConfirm
               ? () {
                   Navigator.maybeOf(context)?.maybePop(p.selectedAssets);

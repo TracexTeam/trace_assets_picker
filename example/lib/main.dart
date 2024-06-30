@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trace_assets_picker/wechat_assets_picker.dart';
+import 'package:trace_assets_picker/trace_assets_picker.dart';
 import 'package:trace_assets_picker_demo/l10n/gen/app_localizations.dart';
 
 import 'constants/extensions.dart';

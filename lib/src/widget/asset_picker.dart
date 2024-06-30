@@ -38,14 +38,14 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
     _pickerDelegate = delegate;
   }
 
-  /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.permissionCheck}
+  /// {@macro trace_assets_picker.delegates.AssetPickerDelegate.permissionCheck}
   static Future<PermissionState> permissionCheck({
     PermissionRequestOption requestOption = const PermissionRequestOption(),
   }) {
     return _pickerDelegate.permissionCheck(requestOption: requestOption);
   }
 
-  /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssets}
+  /// {@macro trace_assets_picker.delegates.AssetPickerDelegate.pickAssets}
   static Future<List<AssetEntity>?> pickAssets(
     BuildContext context, {
     Key? key,
@@ -64,7 +64,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
     );
   }
 
-  /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
+  /// {@macro trace_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
   static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path,
       PickerProvider extends AssetPickerProvider<Asset, Path>>(
     BuildContext context, {
@@ -85,17 +85,17 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
     );
   }
 
-  /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.registerObserve}
+  /// {@macro trace_assets_picker.delegates.AssetPickerDelegate.registerObserve}
   static void registerObserve([ValueChanged<MethodCall>? callback]) {
     _pickerDelegate.registerObserve(callback);
   }
 
-  /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.unregisterObserve}
+  /// {@macro trace_assets_picker.delegates.AssetPickerDelegate.unregisterObserve}
   static void unregisterObserve([ValueChanged<MethodCall>? callback]) {
     _pickerDelegate.unregisterObserve(callback);
   }
 
-  /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.themeData}
+  /// {@macro trace_assets_picker.delegates.AssetPickerDelegate.themeData}
   static ThemeData themeData(Color? themeColor, {bool light = false}) {
     return _pickerDelegate.themeData(themeColor, light: light);
   }

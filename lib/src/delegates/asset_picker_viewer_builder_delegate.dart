@@ -70,7 +70,7 @@ abstract class AssetPickerViewerBuilderDelegate<Asset, Path> {
   /// 通常用户使用苹果系统时，点击网格内容进行预览，是反向进行预览。
   final bool shouldReversePreview;
 
-  /// {@macro wechat_assets_picker.AssetSelectPredicate}
+  /// {@macro trace_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
   /// [StreamController] for viewing page index update.

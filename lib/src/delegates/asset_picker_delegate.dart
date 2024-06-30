@@ -17,7 +17,7 @@ import 'asset_picker_builder_delegate.dart';
 class AssetPickerDelegate {
   const AssetPickerDelegate();
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.permissionCheck}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.permissionCheck}
   /// Request the current [PermissionState] of required permissions.
   /// 请求所需权限的 [PermissionState]。
   ///
@@ -42,7 +42,7 @@ class AssetPickerDelegate {
     return ps;
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.pickAssets}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.pickAssets}
   /// Pick assets with the given [pickerConfig].
   /// 根据给定的 [pickerConfig] 选择资源。
   ///
@@ -128,7 +128,7 @@ class AssetPickerDelegate {
     return result;
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
   /// Pick assets with the given [delegate].
   /// 根据给定的 [delegate] 选择资源。
   ///
@@ -171,7 +171,7 @@ class AssetPickerDelegate {
     return result;
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.registerObserve}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.registerObserve}
   /// Register observe callback with assets changes.
   /// 注册资源（图库）变化的监听回调
   /// {@endtemplate}
@@ -194,7 +194,7 @@ class AssetPickerDelegate {
     }
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.unregisterObserve}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.unregisterObserve}
   /// Unregister the observation callback with assets changes.
   /// 取消注册资源（图库）变化的监听回调
   /// {@endtemplate}
@@ -217,7 +217,7 @@ class AssetPickerDelegate {
     }
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.themeData}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.themeData}
   /// Build a [ThemeData] with the given [themeColor] for the picker.
   /// 为选择器构建基于 [themeColor] 的 [ThemeData]。
   ///

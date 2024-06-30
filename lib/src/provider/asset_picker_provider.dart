@@ -297,10 +297,10 @@ class DefaultAssetPickerProvider
   /// 请求的资源类型
   final RequestType requestType;
 
-  /// @{macro wechat_assets_picker.delegates.SortPathDelegate}
+  /// @{macro trace_assets_picker.delegates.SortPathDelegate}
   final SortPathDelegate<AssetPathEntity>? sortPathDelegate;
 
-  /// {@macro wechat_assets_picker.constants.AssetPickerConfig.sortPathsByModifiedDate}
+  /// {@macro trace_assets_picker.constants.AssetPickerConfig.sortPathsByModifiedDate}
   final bool sortPathsByModifiedDate;
 
   /// Filter options for the picker.

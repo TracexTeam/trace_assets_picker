@@ -3,7 +3,7 @@
 // in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:trace_assets_picker/wechat_assets_picker.dart' show AssetEntity;
+import 'package:trace_assets_picker/trace_assets_picker.dart' show AssetEntity;
 
 import '../constants/picker_method.dart';
 import 'page_mixin.dart';
