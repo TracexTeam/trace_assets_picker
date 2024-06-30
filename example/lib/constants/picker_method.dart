@@ -36,6 +36,7 @@ class PickMethod {
           pickerConfig: AssetPickerConfig(
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
+            themeColor: const Color(0xff007aff),
           ),
         );
       },

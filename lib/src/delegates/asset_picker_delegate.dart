@@ -289,7 +289,7 @@ class AssetPickerDelegate {
       primaryColor: Colors.grey[900],
       primaryColorLight: Colors.grey[900],
       primaryColorDark: Colors.grey[900],
-      canvasColor: Colors.grey[850],
+      canvasColor: Colors.black,
       scaffoldBackgroundColor: Colors.grey[900],
       cardColor: Colors.grey[900],
       highlightColor: Colors.transparent,
@@ -299,17 +299,17 @@ class AssetPickerDelegate {
         selectionHandleColor: themeColor,
       ),
       indicatorColor: themeColor,
-      appBarTheme: AppBarTheme(
-        backgroundColor: Colors.grey[850],
-        systemOverlayStyle: const SystemUiOverlayStyle(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+        systemOverlayStyle: SystemUiOverlayStyle(
           statusBarBrightness: Brightness.dark,
           statusBarIconBrightness: Brightness.light,
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-      bottomAppBarTheme: BottomAppBarTheme(
-        color: Colors.grey[850],
+      bottomAppBarTheme: const BottomAppBarTheme(
+        color: Colors.black,
       ),
       buttonTheme: ButtonThemeData(buttonColor: themeColor),
       iconTheme: const IconThemeData(color: Colors.white),
@@ -326,7 +326,8 @@ class AssetPickerDelegate {
       colorScheme: ColorScheme(
         primary: Colors.grey[900]!,
         secondary: themeColor,
-        background: Colors.grey[900]!,
+        // background: Colors.grey[900]!,
+        background: Colors.black,
         surface: Colors.grey[900]!,
         brightness: Brightness.dark,
         error: const Color(0xffcf6679),

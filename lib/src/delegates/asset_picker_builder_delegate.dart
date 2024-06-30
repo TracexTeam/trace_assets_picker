@@ -1753,8 +1753,8 @@ class DefaultAssetPickerBuilderDelegate
         child: ScaleText(
           text,
           style: const TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.normal,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
           maxLines: 1,
           overflow: TextOverflow.fade,
@@ -1782,10 +1782,6 @@ class DefaultAssetPickerBuilderDelegate
             maxWidth: MediaQuery.sizeOf(context).width * 0.5,
           ),
           padding: const EdgeInsetsDirectional.only(start: 12, end: 6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            color: theme.focusColor,
-          ),
           child: Selector<DefaultAssetPickerProvider,
               PathWrapper<AssetPathEntity>?>(
             selector: (_, DefaultAssetPickerProvider p) => p.currentPath,
@@ -1815,25 +1811,19 @@ class DefaultAssetPickerBuilderDelegate
               );
             },
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 5),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: theme.iconTheme.color!.withOpacity(0.5),
-                ),
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: isSwitchingPath,
-                  builder: (_, bool isSwitchingPath, Widget? w) {
-                    return Transform.rotate(
-                      angle: isSwitchingPath ? math.pi : 0,
-                      child: w,
-                    );
-                  },
-                  child: Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 20,
-                    color: theme.colorScheme.primary,
-                  ),
+              padding: const EdgeInsetsDirectional.only(start: 0),
+              child: ValueListenableBuilder<bool>(
+                valueListenable: isSwitchingPath,
+                builder: (_, bool isSwitchingPath, Widget? w) {
+                  return Transform.rotate(
+                    angle: isSwitchingPath ? math.pi : 0,
+                    child: w,
+                  );
+                },
+                child: Icon(
+                  Icons.keyboard_arrow_down,
+                  size: 26,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
             ),

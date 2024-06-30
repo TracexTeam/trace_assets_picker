@@ -824,11 +824,11 @@ class DefaultAssetPickerViewerBuilderDelegate
                     ? 48
                     : 20,
             height: 32,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             color: themeData.colorScheme.secondary,
             disabledColor: themeData.splashColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(3),
+              borderRadius: BorderRadius.circular(999),
             ),
             onPressed: isButtonEnabled ? onPressed : null,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -987,10 +987,17 @@ class DefaultAssetPickerViewerBuilderDelegate
                 ? SystemUiOverlayStyle.light
                 : SystemUiOverlayStyle.dark),
         child: Material(
-          color: themeData.scaffoldBackgroundColor,
           child: ExtendedImageSlidePage(
             slideType: SlideType.onlyImage,
-            slideAxis: SlideAxis.vertical,
+            // slideAxis: SlideAxis.vertical,
+            slidePageBackgroundHandler: (offset, pageSize) {
+              return defaultSlidePageBackgroundHandler(
+                offset: offset,
+                pageSize: pageSize,
+                color: Colors.black,
+                pageGestureAxis: SlideAxis.both,
+              );
+            },
             child: Stack(
               children: <Widget>[
                 Positioned.fill(child: _pageViewBuilder(context)),
