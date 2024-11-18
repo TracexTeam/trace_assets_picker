@@ -15,8 +15,8 @@ typedef AssetPickerPageRouteBuilder<T> = AssetPickerPageRoute<T> Function(
 class AssetPickerPageRoute<T> extends PageRoute<T> {
   AssetPickerPageRoute({
     required this.builder,
-    this.transitionCurve = Curves.easeIn,
-    this.transitionDuration = const Duration(milliseconds: 100),
+    this.transitionCurve = Curves.easeOut,
+    this.transitionDuration = const Duration(milliseconds: 200),
     this.barrierColor,
     this.barrierDismissible = false,
     this.barrierLabel,
