@@ -98,7 +98,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
 
-  /// {@macro wechat_assets_picker.AssetSelectPredicate}
+  /// {@macro trace_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
   /// The [ScrollController] for the preview grid.
@@ -119,16 +119,16 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// 使用 [Null] 即使用 [isAppleOS] 进行判断。
   final bool? shouldRevertGrid;
 
-  /// {@macro wechat_assets_picker.LimitedPermissionOverlayPredicate}
+  /// {@macro trace_assets_picker.LimitedPermissionOverlayPredicate}
   final LimitedPermissionOverlayPredicate? limitedPermissionOverlayPredicate;
 
-  /// {@macro wechat_assets_picker.PathNameBuilder}
+  /// {@macro trace_assets_picker.PathNameBuilder}
   final PathNameBuilder<Path>? pathNameBuilder;
 
-  /// {@macro wechat_assets_picker.AssetsChangeCallback}
+  /// {@macro trace_assets_picker.AssetsChangeCallback}
   final AssetsChangeCallback<Path>? assetsChangeCallback;
 
-  /// {@macro wechat_assets_picker.AssetsChangeRefreshPredicate}
+  /// {@macro trace_assets_picker.AssetsChangeRefreshPredicate}
   final AssetsChangeRefreshPredicate<Path>? assetsChangeRefreshPredicate;
 
   final bool viewerUseRootNavigator;
@@ -907,10 +907,10 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
   /// 预览是否自动播放
   final bool shouldAutoplayPreview;
 
-  /// {@macro wechat_assets_picker.constants.AssetPickerConfig.dragToSelect}
+  /// {@macro trace_assets_picker.constants.AssetPickerConfig.dragToSelect}
   final bool? dragToSelect;
 
-  /// {@macro wechat_assets_picker.constants.AssetPickerConfig.enableLivePhoto}
+  /// {@macro trace_assets_picker.constants.AssetPickerConfig.enableLivePhoto}
   final bool enableLivePhoto;
 
   /// [Duration] when triggering path switching.
@@ -1220,7 +1220,7 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
         child: pathEntitySelector(context),
       ),
       leading: backButton(context),
-      blurRadius: isAppleOS(context) ? appleOSBlurRadius : 0,
+      // blurRadius: isAppleOS(context) ? appleOSBlurRadius : 0,
     );
     appBarPreferredSize ??= appBar.preferredSize;
     return appBar;
@@ -1861,12 +1861,13 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
         return MaterialButton(
           minWidth: shouldAllowConfirm ? 48 : 20,
           height: appBarItemHeight,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           color: theme.colorScheme.secondary,
           disabledColor: theme.splashColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3),
+            borderRadius: BorderRadius.circular(999),
           ),
+          elevation: 0,
           onPressed: shouldAllowConfirm
               ? () {
                   Navigator.maybeOf(context)?.maybePop(p.selectedAssets);
@@ -1915,10 +1916,15 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
         return Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            RepaintBoundary(
-              child: AssetEntityGridItemBuilder(
-                image: imageProvider,
-                failedItemBuilder: failedItemBuilder,
+            Positioned.fill(
+              child: RepaintBoundary(
+                child: Hero(
+                  tag: asset.id,
+                  child: AssetEntityGridItemBuilder(
+                    image: imageProvider,
+                    failedItemBuilder: failedItemBuilder,
+                  ),
+                ),
               ),
             ),
             FutureBuilder(
@@ -2105,8 +2111,8 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
         child: ScaleText(
           text,
           style: const TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.normal,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
           maxLines: 1,
           overflow: TextOverflow.fade,
@@ -2134,10 +2140,6 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
             maxWidth: MediaQuery.sizeOf(context).width * 0.5,
           ),
           padding: const EdgeInsetsDirectional.only(start: 12, end: 6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            color: theme.focusColor,
-          ),
           child: Selector<T, PathWrapper<AssetPathEntity>?>(
             selector: (_, T p) => p.currentPath,
             builder: (_, PathWrapper<AssetPathEntity>? p, Widget? w) {
@@ -2166,25 +2168,19 @@ class DefaultAssetPickerBuilderDelegate<T extends DefaultAssetPickerProvider>
               );
             },
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 5),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: theme.iconTheme.color!.withOpacity(0.5),
-                ),
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: isSwitchingPath,
-                  builder: (_, bool isSwitchingPath, Widget? w) {
-                    return Transform.rotate(
-                      angle: isSwitchingPath ? math.pi : 0,
-                      child: w,
-                    );
-                  },
-                  child: Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 20,
-                    color: theme.colorScheme.primary,
-                  ),
+              padding: const EdgeInsetsDirectional.only(start: 0),
+              child: ValueListenableBuilder<bool>(
+                valueListenable: isSwitchingPath,
+                builder: (_, bool isSwitchingPath, Widget? w) {
+                  return Transform.rotate(
+                    angle: isSwitchingPath ? math.pi : 0,
+                    child: w,
+                  );
+                },
+                child: Icon(
+                  Icons.keyboard_arrow_down,
+                  size: 26,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
             ),

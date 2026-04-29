@@ -126,10 +126,10 @@ class AssetPickerConfig {
   /// 选择器是否可以从同样的位置开始选择
   final bool keepScrollOffset;
 
-  /// @{macro wechat_assets_picker.delegates.SortPathDelegate}
+  /// @{macro trace_assets_picker.delegates.SortPathDelegate}
   final SortPathDelegate<AssetPathEntity>? sortPathDelegate;
 
-  /// {@template wechat_assets_picker.constants.AssetPickerConfig.sortPathsByModifiedDate}
+  /// {@template trace_assets_picker.constants.AssetPickerConfig.sortPathsByModifiedDate}
   /// Whether to allow sort delegates to sort paths with
   /// [FilterOptionGroup.containsPathModified].
   /// 是否结合 [FilterOptionGroup.containsPathModified] 进行路径排序
@@ -170,7 +170,7 @@ class AssetPickerConfig {
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
 
-  /// {@macro wechat_assets_picker.AssetSelectPredicate}
+  /// {@macro trace_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<AssetEntity>? selectPredicate;
 
   /// Whether the assets grid should revert.
@@ -180,16 +180,16 @@ class AssetPickerConfig {
   /// 使用 [Null] 即使用是否为 Apple 系统进行判断。
   final bool? shouldRevertGrid;
 
-  /// {@macro wechat_assets_picker.LimitedPermissionOverlayPredicate}
+  /// {@macro trace_assets_picker.LimitedPermissionOverlayPredicate}
   final LimitedPermissionOverlayPredicate? limitedPermissionOverlayPredicate;
 
-  /// {@macro wechat_assets_picker.PathNameBuilder}
+  /// {@macro trace_assets_picker.PathNameBuilder}
   final PathNameBuilder<AssetPathEntity>? pathNameBuilder;
 
-  /// {@macro wechat_assets_picker.AssetsChangeCallback}
+  /// {@macro trace_assets_picker.AssetsChangeCallback}
   final AssetsChangeCallback<AssetPathEntity>? assetsChangeCallback;
 
-  /// {@macro wechat_assets_picker.AssetsChangeRefreshPredicate}
+  /// {@macro trace_assets_picker.AssetsChangeRefreshPredicate}
   final AssetsChangeRefreshPredicate<AssetPathEntity>?
       assetsChangeRefreshPredicate;
 
@@ -197,7 +197,7 @@ class AssetPickerConfig {
   /// 预览是否自动播放
   final bool shouldAutoplayPreview;
 
-  /// {@template wechat_assets_picker.constants.AssetPickerConfig.dragToSelect}
+  /// {@template trace_assets_picker.constants.AssetPickerConfig.dragToSelect}
   /// Whether assets selection can be done with drag gestures.
   /// 是否开启拖拽选择
   ///
@@ -209,7 +209,7 @@ class AssetPickerConfig {
   /// {@endtemplate}
   final bool? dragToSelect;
 
-  /// {@template wechat_assets_picker.constants.AssetPickerConfig.enableLivePhoto}
+  /// {@template trace_assets_picker.constants.AssetPickerConfig.enableLivePhoto}
   /// Whether to enable Live-Photo functionality in the picker.
   /// 是否启用实况图片的功能
   ///

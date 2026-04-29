@@ -67,7 +67,7 @@ abstract class AssetPickerViewerBuilderDelegate<Asset, Path,
   /// 通常用户使用苹果系统时，点击网格内容进行预览，是反向进行预览。
   final bool shouldReversePreview;
 
-  /// {@macro wechat_assets_picker.AssetSelectPredicate}
+  /// {@macro trace_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
   /// [StreamController] for viewing page index update.
@@ -383,7 +383,7 @@ class DefaultAssetPickerViewerBuilderDelegate<
   /// 资源选择器的状态保持
   final P? selectorProvider;
 
-  /// {@macro wechat_assets_picker.constants.AssetPickerConfig.enableLivePhoto}
+  /// {@macro trace_assets_picker.constants.AssetPickerConfig.enableLivePhoto}
   final bool enableLivePhoto;
 
   /// Thumb size for the preview of images in the viewer.
@@ -832,11 +832,11 @@ class DefaultAssetPickerViewerBuilderDelegate<
               ? 48
               : 20,
           height: 32,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           color: themeData.colorScheme.secondary,
           disabledColor: themeData.splashColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3),
+            borderRadius: BorderRadius.circular(999),
           ),
           onPressed: isButtonEnabled ? onPressed : null,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -1009,23 +1009,34 @@ class DefaultAssetPickerViewerBuilderDelegate<
                     : SystemUiOverlayStyle.dark),
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              body: Stack(
-                children: <Widget>[
-                  Positioned.fill(child: _pageViewBuilder(context)),
-                  if (isWeChatMoment && hasVideo) ...<Widget>[
-                    momentVideoBackButton(context),
-                    PositionedDirectional(
-                      end: 16,
-                      bottom: context.bottomPadding + 16,
-                      child: confirmButton(context),
-                    ),
-                  ] else ...<Widget>[
-                    appBar(context),
-                    if (selectedAssets != null ||
-                        (isWeChatMoment && hasVideo && isAppleOS(context)))
-                      bottomDetailBuilder(context),
+              body: ExtendedImageSlidePage(
+                slideType: SlideType.onlyImage,
+                slidePageBackgroundHandler: (offset, pageSize) {
+                  return defaultSlidePageBackgroundHandler(
+                    offset: offset,
+                    pageSize: pageSize,
+                    color: Colors.black,
+                    pageGestureAxis: SlideAxis.both,
+                  );
+                },
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(child: _pageViewBuilder(context)),
+                    if (isWeChatMoment && hasVideo) ...<Widget>[
+                      momentVideoBackButton(context),
+                      PositionedDirectional(
+                        end: 16,
+                        bottom: context.bottomPadding + 16,
+                        child: confirmButton(context),
+                      ),
+                    ] else ...<Widget>[
+                      appBar(context),
+                      if (selectedAssets != null ||
+                          (isWeChatMoment && hasVideo && isAppleOS(context)))
+                        bottomDetailBuilder(context),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ),

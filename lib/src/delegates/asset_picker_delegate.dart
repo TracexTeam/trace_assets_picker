@@ -3,10 +3,10 @@
 // in the LICENSE file.
 
 import 'package:flutter/material.dart' hide Path;
-import 'package:flutter/services.dart' show MethodCall;
+import 'package:flutter/services.dart' show MethodCall, SystemUiOverlayStyle;
 import 'package:photo_manager/photo_manager.dart';
 import 'package:wechat_picker_library/wechat_picker_library.dart'
-    show buildTheme;
+    show buildTheme, defaultThemeColorWeChat;
 
 import '../constants/config.dart';
 import '../constants/constants.dart' show packageName;
@@ -18,7 +18,7 @@ import 'asset_picker_builder_delegate.dart';
 class AssetPickerDelegate {
   const AssetPickerDelegate();
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.permissionCheck}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.permissionCheck}
   /// Request the current [PermissionState] of required permissions.
   /// 请求所需权限的 [PermissionState]。
   ///
@@ -43,7 +43,7 @@ class AssetPickerDelegate {
     return ps;
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.pickAssets}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.pickAssets}
   /// Pick assets with the given [pickerConfig].
   /// 根据给定的 [pickerConfig] 选择资源。
   ///
@@ -139,7 +139,7 @@ class AssetPickerDelegate {
     return result;
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
   /// Pick assets with the given [delegate].
   /// 根据给定的 [delegate] 选择资源。
   ///
@@ -189,7 +189,7 @@ class AssetPickerDelegate {
     return result;
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.registerObserve}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.registerObserve}
   /// Register observe callback with assets changes.
   /// 注册资源（图库）变化的监听回调
   /// {@endtemplate}
@@ -212,7 +212,7 @@ class AssetPickerDelegate {
     }
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.unregisterObserve}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.unregisterObserve}
   /// Unregister the observation callback with assets changes.
   /// 取消注册资源（图库）变化的监听回调
   /// {@endtemplate}
@@ -235,7 +235,7 @@ class AssetPickerDelegate {
     }
   }
 
-  /// {@template wechat_assets_picker.delegates.AssetPickerDelegate.themeData}
+  /// {@template trace_assets_picker.delegates.AssetPickerDelegate.themeData}
   /// Build a [ThemeData] with the given [themeColor] for the picker.
   /// 为选择器构建基于 [themeColor] 的 [ThemeData]。
   ///
@@ -248,6 +248,50 @@ class AssetPickerDelegate {
   /// 设置 [light] 为 true 时可以获取浅色版本的主题。
   /// {@endtemplate}
   ThemeData themeData(Color? themeColor, {bool light = false}) {
-    return buildTheme(themeColor, light: light);
+    if (light) {
+      return buildTheme(themeColor, light: light);
+    }
+    themeColor ??= defaultThemeColorWeChat;
+    final base = ThemeData.dark();
+    return base.copyWith(
+      primaryColor: Colors.grey[900],
+      primaryColorLight: Colors.grey[900],
+      primaryColorDark: Colors.grey[900],
+      canvasColor: Colors.black,
+      scaffoldBackgroundColor: Colors.grey[900],
+      cardColor: Colors.grey[900],
+      highlightColor: Colors.transparent,
+      textSelectionTheme: base.textSelectionTheme.copyWith(
+        cursorColor: themeColor,
+        selectionColor: themeColor.withAlpha(100),
+        selectionHandleColor: themeColor,
+      ),
+      indicatorColor: themeColor,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.light,
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0,
+      ),
+      bottomAppBarTheme: const BottomAppBarThemeData(
+        color: Colors.black,
+      ),
+      buttonTheme: ButtonThemeData(buttonColor: themeColor),
+      iconTheme: const IconThemeData(color: Colors.white),
+      colorScheme: ColorScheme(
+        primary: Colors.grey[900]!,
+        secondary: themeColor,
+        surface: Colors.grey[900]!,
+        brightness: Brightness.dark,
+        error: const Color(0xffcf6679),
+        onPrimary: Colors.black,
+        onSecondary: Colors.grey[850]!,
+        onSurface: Colors.white,
+        onError: Colors.black,
+      ),
+    );
   }
 }

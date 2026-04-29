@@ -5,7 +5,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+import 'package:trace_assets_picker/trace_assets_picker.dart';
 
 import '../constants/extensions.dart';
 import '../constants/picker_method.dart';

@@ -102,40 +102,47 @@ class _ImagePageBuilderState extends State<ImagePageBuilder> {
   }
 
   Widget _imageBuilder(BuildContext context, AssetEntity asset) {
-    return ExtendedImage(
-      image: AssetEntityImageProvider(
-        asset,
-        isOriginal: _isOriginal,
-        thumbnailSize: widget.previewThumbnailSize,
-      ),
-      fit: BoxFit.contain,
-      mode: ExtendedImageMode.gesture,
-      onDoubleTap: widget.delegate.updateAnimation,
-      initGestureConfigHandler: (ExtendedImageState state) => GestureConfig(
-        minScale: 1.0,
-        maxScale: 3.0,
-        animationMinScale: 0.6,
-        animationMaxScale: 4.0,
-        inPageView: true,
-        initialAlignment: InitialAlignment.center,
-      ),
-      loadStateChanged: (ExtendedImageState state) {
-        final imageWidget = widget.delegate.previewWidgetLoadStateChanged(
-          context,
-          state,
-          hasLoaded: state.extendedImageLoadState == LoadState.completed,
-        );
-        if (_isLivePhoto && _livePhotoVideoController != null) {
-          return _LivePhotoWidget(
-            asset: asset,
-            controller: _livePhotoVideoController!,
-            fit: BoxFit.contain,
-            state: state,
-            textDelegate: widget.delegate.textDelegate,
-          );
-        }
-        return imageWidget;
+    return Hero(
+      tag: asset.id,
+      flightShuttleBuilder: (
+        BuildContext flightContext,
+        Animation<double> animation,
+        HeroFlightDirection flightDirection,
+        BuildContext fromHeroContext,
+        BuildContext toHeroContext,
+      ) {
+        return flightDirection == HeroFlightDirection.push
+            ? fromHeroContext.widget
+            : fromHeroContext.widget;
       },
+      child: ExtendedImage(
+        image: AssetEntityImageProvider(
+          asset,
+          isOriginal: _isOriginal,
+          thumbnailSize: widget.previewThumbnailSize,
+        ),
+        fit: BoxFit.contain,
+        mode: ExtendedImageMode.gesture,
+        onDoubleTap: widget.delegate.updateAnimation,
+        enableSlideOutPage: true,
+        loadStateChanged: (ExtendedImageState state) {
+          final imageWidget = widget.delegate.previewWidgetLoadStateChanged(
+            context,
+            state,
+            hasLoaded: state.extendedImageLoadState == LoadState.completed,
+          );
+          if (_isLivePhoto && _livePhotoVideoController != null) {
+            return _LivePhotoWidget(
+              asset: asset,
+              controller: _livePhotoVideoController!,
+              fit: BoxFit.contain,
+              state: state,
+              textDelegate: widget.delegate.textDelegate,
+            );
+          }
+          return imageWidget;
+        },
+      ),
     );
   }
 

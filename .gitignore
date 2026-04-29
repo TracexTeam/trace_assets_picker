@@ -76,3 +76,5 @@ devtools_options.yaml
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 *.lock
 .env
+# FVM
+.fvm/

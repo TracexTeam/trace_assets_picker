@@ -3,7 +3,7 @@
 // in the LICENSE file.
 
 // ignore: unnecessary_library_name
-library wechat_assets_picker;
+library trace_assets_picker;
 
 export 'package:photo_manager/photo_manager.dart';
 export 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
